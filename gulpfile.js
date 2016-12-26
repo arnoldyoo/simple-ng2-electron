@@ -5,7 +5,7 @@ const tscConfig = require('./tsconfig.json');
 
 // clean the contents of the distribution directory
 gulp.task('clean', function () {
-  return del('dist/**/*');
+  return del.sync('dist/**/*');
 });
 
 gulp.task('copy:vendor', function(){  
@@ -52,5 +52,5 @@ gulp.task('compile:electron', function () {
     .pipe(gulp.dest('dist/electron.app/'));
 });
 
-gulp.task('build', ['copy:vendor','copy:index','copy:angular','compile:angular','compile:electron']);
+gulp.task('build', ['clean', 'copy:vendor','copy:index','copy:angular','compile:angular','compile:electron']);
 gulp.task('default', ['build']);
